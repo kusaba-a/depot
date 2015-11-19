@@ -17,6 +17,7 @@ class StoreController < ApplicationController
       session[:counter] += 1
     end
     @counter = session[:counter]
+    @cart = current_cart
 
     #5からカウント
 

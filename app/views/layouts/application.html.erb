@@ -20,6 +20,9 @@
         <li><a href="http://www..../news">ニュース</a></li>
         <li><a href="http://www..../contact">お問い合わせ</a></li>
         <li>現在の時刻<br><%=@time.strftime("%Y/%m/%d/%H:%M:%S") %></li>
+        <% if @cart%>
+        <li><%= link_to('カート', cart_path(@cart))%></li>
+        <% end %>
       </ul>
     </div>
     <div id="main">
