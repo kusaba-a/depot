@@ -14,6 +14,9 @@
   </div>
   <div id="columns">
     <div id="side">
+    <div id="cart">
+      <%= render(@cart)%>
+    </div>
       <ul>
         <li><a href="http://www....">ホーム</a></li>
         <li><a href="http://www..../faq">よくある質問</a></li>
@@ -24,6 +27,17 @@
         <li><%= link_to('カート', cart_path(@cart))%></li>
         <% end %>
       </ul>
+
+      <% if session[:user_id] %>
+      <ul>
+      <li><%= link_to('注文',    orders_path)%></li>
+       <li><%= link_to('商品',    products_path)%></li>
+       <li><%= link_to('ユーザー',    users_path)%></li>
+     </ul>
+     <%= button_to('ログアウト', logout_path, method: :delete) %>
+     <% end %>
+
+
     </div>
     <div id="main">
 

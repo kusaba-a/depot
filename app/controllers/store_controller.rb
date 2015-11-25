@@ -1,13 +1,13 @@
 class StoreController < ApplicationController
-  # before_action :now
+  skip_before_action :authorize
 
   def index
     @products = Product.order(:title)
 
     #デバッグ用
-    puts"----------------"
-    puts session[:counter]
-    puts"----------------"
+    # puts"----------------"
+    # puts session[:counter]
+    # puts"----------------"
 
     #1からカウント
 

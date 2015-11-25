@@ -1,4 +1,5 @@
 class LineItemsController < ApplicationController
+  skip_before_action :authorize, only: [:create, :destroy]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
 
   # GET /line_items
@@ -40,7 +41,8 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to @line_item.cart}
+        format.html { redirect_to store_url}
+        format.js   {@current_item = @line_item}
         format.json { render :show, status: :created, location: @line_item }
         # format.json { render json :@line_item, status: :created, location: @line_item }
       else
@@ -71,7 +73,7 @@ class LineItemsController < ApplicationController
     cart = @line_item.cart
     @line_item.destroy
     respond_to do |format|
-      format.html { redirect_to cart_url(cart), notice: '商品を削除しました。' }
+      format.html { redirect_to store_url, notice: '商品を削除しました。' }
       format.json { head :no_content }
     end
   end
